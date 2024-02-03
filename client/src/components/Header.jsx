@@ -17,6 +17,7 @@ export default function Header() {
           <span className='text-green-500 font-bold'>Homes</span>
         </h1>
 
+
         </Link>
         <form className='bg-slate-100 p-3 rounded-lg flex items-center'>
           <input type="text" placeholder='search...' className=' bg-transparent focus:outline-none w-24 sm:w-64 md:w-44' />

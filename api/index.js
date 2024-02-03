@@ -23,24 +23,18 @@ mongoose
         console.log(error);
     });
 
-
 // Test API
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
-
-
-
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000...');
 });
 
-
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || 'Server Error...';
     const databaseError = err.errors && err.errors.password && err.errors.password.message;
-
     
     return res.status(statusCode).json({
         success: false,
