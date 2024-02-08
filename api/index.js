@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGO).then(() => {
 
 const app = express();
 
-app.listen(4000, () => {
+app.listen(3000, () => {
     console.log('Server is running on 3000');
 }
 )
