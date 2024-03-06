@@ -1,15 +1,16 @@
 import { useState } from 'react'
-import { Link, json } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
+import OAuth from '../components/OAuth';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 
 export default function SignIn() {
 
   // for loading effect on signup button
 
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
+  const { loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   // State to store form data
   const [formData, setFormData] = useState({});
@@ -30,8 +31,7 @@ export default function SignIn() {
     e.preventDefault();
 
     try {
-      setLoading(true);
-
+      dispatch(signInStart());
 
       // Sending a POST request to the '/api/auth/signUp' endpoint
       const res = await fetch('/api/auth/signin', {
@@ -47,16 +47,14 @@ export default function SignIn() {
       // Parse the response as JSON
       const data = await res.json();
       if (data.success == false) {
-        setLoading(false);
-        setError(data.message);
+        dispatch(signInFailure(data.message));
 
         return;
 
 
       }
 
-      setLoading(false);
-      setError(null);
+     dispatch(signInSuccess(data));
       navigate('/');
       
       // console.log(data);
@@ -64,8 +62,7 @@ export default function SignIn() {
 
     }
     catch (error) {
-      setLoading(false);
-      setError(error.message);
+      dispatch(signInFailure(error.message));
 
     }
 
@@ -85,7 +82,7 @@ export default function SignIn() {
         <button disabled={loading} className='bg- bg-slate-700 text-white p-3 rounded-lg hover:opacity-95 disabled:opacity-80'>
           {loading ? "loading..." : 'Sign in'}
         </button>
-
+        <OAuth/>
       </form>
 
       <div className='flex justify-center gap-2 mt-5'>
