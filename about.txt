@@ -1,0 +1,23 @@
+import React from 'react'
+
+export default function About() {
+    return (
+        <div className='py-20 px-4 max-w-6xl mx-auto'>
+            <h1 className='text-3xl font-bold mb-4 text-slate-800'>About Vacation Homes</h1>
+            <p className='mb-4 text-slate-700'>Vacation Homes is a landing real estate  agency that
+                specializes in helping clients rent properties in most
+                desirable areas. Our team of experienced agents is
+                dedicated to providing exceptional service and making
+                the renting process as smooth as possible.
+            </p>
+            <p className='mb-4 text-slate-700'>
+                Our mission is to help our clients stay in the best
+                locality possible, for that we are providing expert
+                advice, personalized service, and a deep understing of
+                the local market. Whether you want to rent for a day
+                a month, we are here to help you in every step of the
+                way.
+            </p>
+        </div>
+    )
+}
