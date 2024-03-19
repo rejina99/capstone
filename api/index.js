@@ -25,14 +25,12 @@ mongoose
         console.log(error);
     });
 
+app.use(cookieParser());
 
 // Test API
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
-
-
-app.use(cookieParser());
 
 
 app.listen(3000, () => {
