@@ -1,106 +1,74 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import OAuth from '../components/OAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 
 export default function SignIn() {
-
-  // for loading effect on signup button
-
   const navigate = useNavigate();
   const { loading, error } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
-  // State to store form data
   const [formData, setFormData] = useState({});
 
-  // Event handler for input changes
   const handleChange = (e) => {
-    // Update formData with the new input value
     setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
   };
 
-  // console.log(formData);
-
-  // Event handler for form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       dispatch(signInStart());
-
-      // Sending a POST request to the '/api/auth/signUp' endpoint
       const res = await fetch('/api/auth/signin', {
         method: 'POST',
-        // Request headers specifying that the content type is JSON
         headers: {
           'Content-Type': 'application/json',
         },
-        // Convert formData to a JSON string and include it in the request body
         body: JSON.stringify(formData),
       });
-
-      // Parse the response as JSON
       const data = await res.json();
-      if (data.success == false) {
+      
+      if (!data.success) {
         dispatch(signInFailure(data.message));
-
         return;
-
-
       }
 
-     dispatch(signInSuccess(data));
+      dispatch(signInSuccess(data));
       navigate('/');
-      
-      // console.log(data);
-
-
-    }
-    catch (error) {
+    } catch (error) {
       dispatch(signInFailure(error.message));
-
     }
-
-
   };
 
-
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-  <h1 className='text-blue-500 text-4xl text-center font-semibold my-7'>Welcome to Vacation Homes...</h1>
+<div className='flex justify-center items-center h-screen'>
+  <div className='p-8 bg-white rounded-lg shadow-lg'>
+  <h1 className='text-3xl font-semibold text-center mb-6 text-blue-400'>
+  Welcome To Vacation Homes
+</h1>
 
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        {/* <input className='border p-3 rounded-lg' type="text" placeholder='username' id='username' onChange={handleChange} /> */}
-        <input className='border p-3 rounded-lg' type="email" placeholder='email' id='email' onChange={handleChange} />
-        <input className='border p-3 rounded-lg' type="password" placeholder='password' id='password' onChange={handleChange} />
+    <form onSubmit={handleSubmit} className='flex flex-col gap-6'>
+      <input className='border-b-2 border-gray-400 p-3 focus:outline-none' type="email" placeholder='Enter your email' id='email' onChange={handleChange} />
+      <input className='border-b-2 border-gray-400 p-3 focus:outline-none' type="password" placeholder='Enter your password' id='password' onChange={handleChange} />
 
-        <button disabled={loading} className='bg- bg-slate-700 text-white p-3 rounded-lg hover:opacity-95 disabled:opacity-80'>
-          {loading ? "loading..." : 'Sign in'}
-        </button>
-        <OAuth/>
-      </form>
+      <button disabled={loading} className='bg-blue-500 text-white font-semibold p-3 rounded-lg hover:bg-blue-600 disabled:opacity-80 focus:outline-none'>
+  {loading ? "Authenticating..." : 'Sign In'}
+</button>
+<OAuth/>
 
-      <div className='flex justify-center gap-2 mt-5'>
+    </form>
 
-        <p>Dont have an account?</p>
-
-        <Link to={"/signUp"}>
-
-          <span className='text-blue-700'>Sign up</span>
-        </Link>
-
-
-      </div>
-
-      {error && <p className=' text-red-500 mt-5'>{error}</p>}
-
-
+    <div className='flex justify-center mt-4'>
+      <p className='text-gray-800'>New here?</p>
+      <Link to="/signUp" className='text-blue-500 ml-1 font-semibold'>Sign Up</Link>
     </div>
 
-  )
-};
+    {error && <p className='text-red-600 mt-4'>{error}</p>}
+  </div>
+</div>
+
+  );
+}

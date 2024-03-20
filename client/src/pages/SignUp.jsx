@@ -76,36 +76,30 @@ export default function SignUp() {
 
 
   return (
-    <div className='p-3 max-w-lg mx-auto'>
-  <h1 className='text-blue-500 text-4xl text-center font-semibold my-7'>Welcome to Vacation Homes...</h1>
+<div className='flex justify-center items-center h-screen'>
+  <div className='p-8 bg-white rounded-lg shadow-lg'>
+  <h1 className='text-3xl font-semibold text-center mb-6 text-blue-400'>
+  Welcome To Vacation Homes
+</h1>
+  <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
+    <input className='border p-3 rounded-lg' type="text" placeholder='Username' id='username' onChange={handleChange} />
+    <input className='border p-3 rounded-lg' type="email" placeholder='Email' id='email' onChange={handleChange} />
+    <input className='border p-3 rounded-lg' type="password" placeholder='Password' id='password' onChange={handleChange} />
 
-      <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
-        <input className='border p-3 rounded-lg' type="text" placeholder='username' id='username' onChange={handleChange} />
-        <input className='border p-3 rounded-lg' type="email" placeholder='email' id='email' onChange={handleChange} />
-        <input className='border p-3 rounded-lg' type="password" placeholder='password' id='password' onChange={handleChange} />
+    <button disabled={loading} className='bg-blue-500 text-white p-3 rounded-lg hover:bg-blue-600 disabled:opacity-80 focus:outline-none'>
+      {loading ? "Loading..." : 'Sign Up'}
+    </button>
+    <OAuth/>
+  </form>
 
-        <button disabled={loading} className='bg- bg-slate-700 text-white p-3 rounded-lg hover:opacity-95 disabled:opacity-80'>
-          {loading ? "loading..." : 'Sign up'}
-        </button>
-        <OAuth/>
-      </form>
+  <div className='flex justify-center gap-2 mt-5'>
+    <p>Already have an account?</p>
+    <Link to={"/signIn"} className='text-blue-700 font-semibold'>Sign in</Link>
+  </div>
 
-      <div className='flex justify-center gap-2 mt-5'>
-
-        <p>Have an account?</p>
-
-        <Link to={"/signIn"}>
-
-          <span className='text-blue-700'>Sign in</span>
-        </Link>
-
-
-      </div>
-
-      {error && <p className=' text-red-500 mt-5'>{error}</p>}
-
-
-    </div>
+  {error && <p className='text-red-500 mt-5'>{error}</p>}
+</div>
+</div>
 
   )
 };
