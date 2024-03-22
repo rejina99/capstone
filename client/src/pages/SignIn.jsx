@@ -2,13 +2,31 @@ import { useState } from 'react'
 import { Link, json } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { signInStart } from '../redux/user/userSlice';
+import { signInSuccess } from '../redux/user/userSlice';
+import { signInFailure } from '../redux/user/userSlice';
+import OAuth from '../components/OAuth';
+
+
+
+
 export default function SignIn() {
+
+
+const dispatch = useDispatch();
+
 
   // for loading effect on signup button
 
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+
+  const { loading, error} = useSelector((state) => state.user);
+
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false); 
 
 
   // State to store form data
@@ -30,7 +48,11 @@ export default function SignIn() {
     e.preventDefault();
 
     try {
-      setLoading(true);
+
+      dispatch(signInStart());
+
+
+      // setLoading(true);
 
 
       // Sending a POST request to the '/api/auth/signUp' endpoint
@@ -47,16 +69,20 @@ export default function SignIn() {
       // Parse the response as JSON
       const data = await res.json();
       if (data.success == false) {
-        setLoading(false);
-        setError(data.message);
+        dispatch(signInFailure(data.message));
+        // setLoading(false);
+        // setError(data.message);
 
         return;
 
 
       }
 
-      setLoading(false);
-      setError(null);
+      dispatch(signInSuccess(data));
+
+
+      // setLoading(false);
+      // setError(null);
       navigate('/');
       
       // console.log(data);
@@ -64,8 +90,11 @@ export default function SignIn() {
 
     }
     catch (error) {
-      setLoading(false);
-      setError(error.message);
+
+      dispatch(signInFailure(error.message));
+
+      // setLoading(false);
+      // setError(error.message);
 
     }
 
@@ -85,6 +114,8 @@ export default function SignIn() {
         <button disabled={loading} className='bg- bg-slate-700 text-white p-3 rounded-lg hover:opacity-95 disabled:opacity-80'>
           {loading ? "loading..." : 'Sign in'}
         </button>
+
+        <OAuth/>
 
       </form>
 

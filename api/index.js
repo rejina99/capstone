@@ -5,11 +5,16 @@ import dotenv from 'dotenv';
 // Routes
 import userRouter from "./routes/user.route.js"
 import authRouter from "./routes/auth.route.js"
-import listingRouter from './routes/listing.route.js';
+import listingRouter from "./routes/listing.route.js"
 
+
+// packeges 
+
+import cookieParser from "cookie-parser";
 
 const app = express();
 app.use(express.json());
+app.use(cookieParser());
 
 // Load environment variables
 dotenv.config();
