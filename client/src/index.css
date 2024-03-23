@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 body {
     background-color: rgb(241, 245, 241);
 }
@@ -25,3 +26,100 @@ body {
     margin-bottom: 20px;
     color: #4a5568;
 }
+
+.about-containerr {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .about-content {
+    margin-bottom: 40px;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
+  
+  .about-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .team-members {
+    margin-top: 40px;
+  }
+  
+  .team-members-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+  }
+  
+  .team-members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding-top: 30px;
+  }
+  
+  .team-member-card {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .team-member-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .team-member-info {
+    padding: 20px;
+  }
+  
+  .team-member-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .team-member-role {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 10px;
+  }
+  
+  .team-member-description {
+    font-size: 1rem;
+    color: #666;
+  }
+  .hr {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+/* footer */
+
+.footer {
+    background-color: #f8f9fa; /* Background color for the footer */
+    padding: 20px; /* Adjust padding as needed */
+    text-align: center; /* Center-align the content */
+  }
+  
+  .footer p {
+    margin: 0; /* Remove default margin */
+  }
+  
+  .footer .copyright {
+    font-size: 14px; /* Adjust font size as needed */
+    color: #333; /* Text color for copyright */
+  }

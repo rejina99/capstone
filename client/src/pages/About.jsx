@@ -1,29 +1,65 @@
 import React from 'react';
+import '../index.css';
 
-const About = () => {
+// Card component for team members
+function TeamMemberCard({ name, role, image, description }) {
   return (
-    <div className='py-20 px-4 max-w-6xl mx-auto'>
-      <h1 className='text-3xl font-bold mb-4 text-slate-800'>Welcome to Vacation Homes - Your Gateway to Memorable Stays</h1>
-      <p className='mb-4 text-slate-700'>At Vacation Homes, we're passionate about providing a platform where travelers can discover unique and memorable places to stay, while also empowering homeowners to showcase their properties to a global audience.</p>
-
-      <div className="mb-4">
-        <h2 className="text-xl font-bold mb-2 text-slate-800">What Sets Us Apart</h2>
-        <ul className="list-disc pl-6">
-          <li className="mb-2">Diverse Selection: Whether you're looking for a house, apartment, cozy cottage, a luxurious villa, or an adventurous treehouse, Vacation Homes offers a diverse selection of properties to suit every traveler's taste and budget.</li>
-          <li className="mb-2">Personalized Experience: We believe that every trip is unique, which is why we prioritize personalization. Our intuitive search filters and recommendation algorithms help travelers find the perfect stay tailored to their preferences.</li>
-          <li className="mb-2">Direct Communication: We facilitate direct communication between homeowners and travelers, fostering transparency and trust. This direct connection allows travelers to ask questions, negotiate terms, and customize their stay, ensuring a seamless booking process.</li>
-          <li className="mb-2">Community-driven: At Vacation Homes, we're more than just a booking platform - we're a community. Homeowners can showcase their properties to a global audience, while travelers can connect with like-minded individuals and share their experiences.</li>
-        </ul>
-      </div>
-
-      <p className='mb-4 text-slate-700'>Our mission is simple: to inspire and empower travelers to explore the world, one stay at a time. Whether it's a weekend getaway, a family vacation, or a solo adventure, we're committed to helping travelers find their perfect home away from home.</p>
-
-      <div className="mb-4">
-        <h2 className="text-xl font-bold mb-2 text-slate-800">Get Started Today</h2>
-        <p>Ready to embark on your next adventure? Browse our selection of vacation homes, connect with homeowners, and book your dream stay today. Welcome to Vacation Homes - where unforgettable memories begin.</p>
+    <div className='team-member-card'>
+      <img src={image} alt={name} className='team-member-image' />
+      <div className='team-member-info'>
+        <h5 className='team-member-name'>{name}</h5>
+        <p className='team-member-role'>{role}</p>
+        <p className='team-member-description'>{description}</p>
       </div>
     </div>
   );
-};
+}
 
-export default About;
+export default function About() {
+  return (
+    <div className='about-containerr'>
+      <div className='about-content'>
+        <h1 className='about-title'>About Vacation Homes</h1>
+        <hr className='hr'></hr>
+        <p className='about-description'>
+          Vacation Homes is a leading real estate agency that specializes in helping clients lease and rent properties in the most desirable neighborhoods. Our team of experienced agents is dedicated to providing exceptional service and making the renting process as smooth as possible.
+        </p>
+        <p className='about-description'>
+          Our mission is to help our clients find the perfect place to stay by providing expert advice, personalized service, and a deep understanding of the local market. Whether you are looking to lease or rent a property, we are here to help you every step of the way.
+        </p>
+        <p className='about-description'>
+          Our team of agents has a wealth of experience and knowledge in the real estate industry, and we are committed to providing the highest level of service to our clients. We believe that renting a property for vacations should be an exciting and rewarding experience, and we are dedicated to making that a reality for each and every one of our clients.
+        </p>
+      </div>
+      <div className='team-members'>
+        <h2 className='team-members-title'>Meet Our Team</h2>
+        <hr className='hr'></hr>
+        <div className='team-members-grid'>
+          <TeamMemberCard
+            name='Rejina Maharjan'
+            role='Product Manager'
+            image='../src/img/rejina.jpg'
+            description="Rejina leads the vision and strategy for our vacation rental marketplace, ensuring that our platform meets the needs of both hosts and guests. With a deep understanding of market trends and user insights, Rejina collaborates with cross-functional teams to prioritize features, define the product roadmap, and deliver innovative solutions that drive business growth. Rejina's strategic thinking, leadership, and passion for delivering exceptional products make her a driving force behind our success."
+          />
+          <TeamMemberCard
+            name='Parth Patel'
+            role='Software Engineer/Developer'
+            image='../src/img/parth.jpg'
+            description="Parth is responsible for building and maintaining the technical foundation of our vacation rental platform. With expertise in software development and a focus on scalability and reliability, Parth designs and implements robust solutions that power our platform's functionality. Whether it is developing new features, optimizing performance, or ensuring security, Parth's technical skills, attention to detail, and commitment to quality ensure that our platform delivers a seamless experience for users."
+          />
+          <TeamMemberCard
+            name='Sunil Gohil'
+            role='Customer Experience Specialist'
+            image='../src/img/sunil.jpeg'
+            description="Sunil is dedicated to ensuring that every user's journey on our vacation rental platform is smooth and enjoyable. With a keen eye for detail and excellent communication skills, Sunil assists customers with inquiries, resolves issues promptly, and gathers valuable feedback to improve the overall user experience. Sunil's passion for customer satisfaction and problem-solving skills make him an invaluable asset to our team."
+          />
+        </div>
+      </div>
+      <footer className='footer'>
+        <p className='copyright'>
+          &copy; {new Date().getFullYear()} Vacation Homes. All rights reserved.
+        </p>
+      </footer>
+    </div>
+  );
+}

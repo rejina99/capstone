@@ -33,7 +33,8 @@ export default function OAuth() {
         <button
           onClick={handleGoogleClick}
           type='button'
-          className='flex items-center justify-center border border-gray-300 bg-white text-black p-3 rounded-lg hover:bg-gray-100 hover:border-gray-400 focus:outline-none'>          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" className="w-6 h-6 mr-2" />          
+          className='flex items-center justify-center border border-gray-300 bg-white text-black p-3 rounded-lg hover:bg-gray-100 hover:border-gray-400 focus:outline-none'>          
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" className="w-6 h-6 mr-2" />          
           Continue with google
         </button>
       );
