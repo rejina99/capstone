@@ -2,17 +2,15 @@ import React, { useState } from "react";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { app } from "../firebase";
 import { set } from "mongoose";
-
-
 import { useSelector } from "react-redux";
-
+import { useNavigate } from "react-router-dom";
 
 
 export default function CreateListing() {
 
     const {currentUser} = useSelector(state => state.user)
-
     const [files, setFiles] = useState([])
+    const navigate = useNavigate();
     // console.log(files);
 
     const [formData, setFormData] = useState({
@@ -28,7 +26,8 @@ export default function CreateListing() {
         offer: false,
         parking: false,
         furnished: false,
-        currentUser: currentUser._id,
+        currentUser: currentUser._id
+        
 
     })
 
@@ -154,10 +153,15 @@ export default function CreateListing() {
             const data = await res.json();
             setLoading(false);
 
+            
             if(data.success == false)
             {
                 setError(data.message);
             }
+
+
+            // Send the data on listing page with Id.
+            navigate(`/listing/${data._id}`)
 
 
         }

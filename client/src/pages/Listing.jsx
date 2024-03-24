@@ -1,9 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-function Listing() {
+export default function Listing() {
+
   return (
     <div>Listing</div>
   )
 }
-
-export default Listing

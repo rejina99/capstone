@@ -112,6 +112,25 @@ export const google = async (req, res, next) => {
 }
 
 
+// signout
+
+export const signOut = async (req, res, next) => {
+  try {
+    // Clear the access token cookie
+    res.clearCookie('access_token', {
+      
+      path: '/', // Specify the path where the cookie is valid
+      httpOnly: true, // Prevent client-side JavaScript from accessing the cookie
+      secure: true, // Only send the cookie over HTTPS
+    });
+
+    // Send a JSON response indicating successful logout
+    res.status(200).json({ message: 'User has been logged out successfully.' });
+  } catch (error) {
+    // Pass any errors to the error handling middleware
+    next(error);
+  }
+};
 
 
 
