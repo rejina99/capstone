@@ -2,6 +2,7 @@ import express from 'express';
 import { getUserListings, test, updateUser, deleteUser } from '../controllers/user.controller.js';
 import { verifyToken } from '../utils/verifyUser.js';
 
+
 const router = express.Router();
 
 // Parse JSON request bodies

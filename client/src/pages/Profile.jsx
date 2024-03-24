@@ -126,6 +126,26 @@ export default function Profile() {
 
 
 
+  // delete listing on profile
+
+  const handleListingDelete = async (listingId) => {
+    try {
+      const res = await fetch(`/api/listing/delete/${listingId}`, {
+        method: 'DELETE',
+      });
+      const data = await res.json();
+      if (data.success === false) {
+        console.log(data.message);
+        return;
+      }
+
+      setUserListings((prev) => prev.filter((listing) => listing._id !== listingId))
+    } catch (error) {
+      console.log(error.message);
+    }
+
+  }
+
 
 
 
@@ -168,9 +188,9 @@ export default function Profile() {
         <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>Sign Out</span>
       </div>
 
-      <p className='text-red-700 mt-5'>
+      {/* <p className='text-red-700 mt-5'>
         {showListingsError ? 'Error showing listings' : ''}
-      </p>
+      </p> */}
 
 
       <p className=' text-green-700'>{updateSuccess ? 'User is updated suceessfully... ' : ''}</p>
@@ -186,17 +206,17 @@ export default function Profile() {
 
 
         <h2 className="text-2xl font-bold mt-4 text-center text-slate-700 mb-4">
-          <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text">
+          <span className="bg-gradient-to-r from-green-400 to-blue-500 text-transparent bg-clip-text ">
             Your Listings
           </span>, {currentUser.username}
         </h2>
 
         {userListings && userListings.length > 0 ? (
           userListings.map((listing) => (
-            <div key={listing._id} className=' bg-gradient-to-r from-green-400 to-blue-500 text-black p-3 flex items-center rounded-lg border mt-3 hover:shadow-md'>
+            <div key={listing._id} className=' bg-gradient-to-r from-green-400 to-blue-500 text-black p-3 flex items-center border mt-3 hover:shadow-md object-cover rounded-lg transition-transform hover:scale-105'>
               {/* photo */}
               <Link to={`/listing/${listing._id}`} className="flex-shrink-0 mr-4">
-                <img src={listing.imageUrls[0]} alt="listing cover" className='h-16 w-16 object-cover rounded-lg' />
+                <img src={listing.imageUrls[0]} alt="listing cover" className='h-16 w-16 object-cover rounded-lg transition-transform hover:scale-145' />
               </Link>
 
               <div className="flex flex-col flex-1">
@@ -210,6 +230,13 @@ export default function Profile() {
                     <p className="text-white">Discounted Price : ${listing.discountPrice}</p>
                   )}
                 </div>
+                <div className="  flex justify-stretch space-x-2">
+                  <Link to={`/update-listing/${listing._id}`}>
+                  <button className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Update</button>
+                  </Link>
+                  
+                  <button onClick={() => handleListingDelete(listing._id)} className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600">Delete</button>
+                </div>
               </div>
             </div>
           ))
@@ -218,10 +245,6 @@ export default function Profile() {
         )}
       </div>
 
-
-      {/* 
-      
-      */}
 
 
     </div>
@@ -232,6 +255,16 @@ export default function Profile() {
 
 
 // better design
+
+
+// buttons
+// 
+{/* <div className="ml-auto flex space-x-2">
+<button className="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-600">Update</button>
+<button className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600">Delete</button>
+</div> */}
+
+
 
 // // <div className="bg-gradient-to-r from-green-400 to-blue-500 p-4 rounded-lg shadow-md">
 
