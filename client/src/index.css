@@ -4,7 +4,8 @@
 
 
 body {
-    background-color: rgb(241, 245, 241);
+    /* background-color: rgb(241, 245, 241); */
+    background-color: white;
 }
 .about-container {
     padding: 20px;
