@@ -1,0 +1,32 @@
+
+main {
+    margin: 25px;
+}
+
+.carousel-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .carousel-image {
+     width: 100vw;
+    height: 85vh; 
+    object-fit: cover;
+  }
+
+  
+
+  
+  /* Customize dots */
+  .slick-dots li button::before {
+    color: #333232; /* Change dot color */
+  }
+  
+  .slick-dots li.slick-active button::before {
+    color: #00f; /* Change active dot color */
+  }
+  
+  .slick-dots li button:hover::before {
+    color: #f00; /* Change dot color on hover */
+}
