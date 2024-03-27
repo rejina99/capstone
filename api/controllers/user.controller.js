@@ -76,4 +76,5 @@ export const getUser = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  
 };
