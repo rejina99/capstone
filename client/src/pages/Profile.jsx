@@ -158,8 +158,8 @@ export default function Profile() {
         {currentUser.avatar ? (
           <img
             src={formData?.avatar || currentUser.avatar}
-            alt="/"
-            className='rounded-full h-24 w-24 object-cover cursor-pointer mx-auto mt-2'
+            alt="/image-big"
+            className='rounded-lg h-28 w-28 object-cover cursor-pointer mx-auto mt-2'
           />
         ) : (
           <div className='text-center text-gray-500'>No avatar available</div>
@@ -216,7 +216,7 @@ export default function Profile() {
             <div key={listing._id} className=' bg-gradient-to-r from-green-400 to-blue-500 text-black p-3 flex items-center border mt-3 hover:shadow-md object-cover rounded-lg transition-transform hover:scale-105'>
               {/* photo */}
               <Link to={`/listing/${listing._id}`} className="flex-shrink-0 mr-4">
-                <img src={listing.imageUrls[0]} alt="listing cover" className='h-16 w-16 object-cover rounded-lg transition-transform hover:scale-145' />
+                <img src={listing.imageUrls[0]} alt="listing cover" className=' h-24 w-24 object-cover rounded-lg transition-transform hover:scale-145' />
               </Link>
 
               <div className="flex flex-col flex-1">

@@ -4,6 +4,11 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useSelector } from 'react-redux';
+
+import Contact from '../components/Contact';
+
+
+
 // Other imports...
 import { FaBath, FaBed, FaChair, FaMapMarkerAlt, FaParking, FaShare } from 'react-icons/fa';
 
@@ -18,6 +23,7 @@ export default function Listing() {
   const [copied, setCopied] = useState(false);
   const params = useParams();
   const { currentUser } = useSelector((state) => state.user);
+  const [contact, setContact] = useState(false);
 
   useEffect(() => {
     const fetchListing = async () => {
@@ -136,11 +142,15 @@ export default function Listing() {
                 {listing.furnished ? 'Furnished' : 'Unfurnished'}
               </li>
             </ul>
-            {currentUser && listing.userRef !== currentUser._id && (
-              <button className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>
-                Contact landlord
+            
+            <button 
+              onClick={() => setContact(true)}
+              className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>
+                Contact Property Owner
               </button>
-            )}
+            {contact && <Contact listing={listing} />}
+
+
           </div>
         </div>
       )}
