@@ -223,7 +223,6 @@ export default function Profile() {
                 <Link to={`/listing/${listing._id}`} className="text-black font-semibold hover:underline truncate">
                   {listing.name}
                 </Link>
-                <p className="text-white text-sm">{listing.description}</p>
                 <div className="flex justify-between items-center mt-2">
                   <p className="text-white">${listing.regularPrice}</p>
                   {listing.discountPrice && (
