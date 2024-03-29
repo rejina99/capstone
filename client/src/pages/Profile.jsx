@@ -94,7 +94,6 @@ export default function Profile() {
 
       // Clear the cookie (assuming the cookie name is 'auth_token')
       document.cookie = 'auth_token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT;';
-
       // Redirect to the home page
       window.location.href = '/';
     } catch (error) {
