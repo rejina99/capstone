@@ -71,6 +71,7 @@ export default function CreateListing() {
         // e.preventDefault();
 
         if (files.length > 0 && files.length < 9) {
+            setImageUploadError(false);
             const promises = [];
 
             for (let i = 0; i < files.length; i++) {
@@ -87,16 +88,14 @@ export default function CreateListing() {
                 setImageUploadError(false);
 
             })
-                .catch((error) => {
-                    setImageUploadError("Error in uploading image...");
-                })
-
+            .catch((error) => {
+                setImageUploadError("Error in uploading image (2 mb max size");
+            });
+        }
+        else {
+            setImageUploadError('Max images to upload is 6');
         }
     }
-
-
-
-
 
     const storeImage = async (file) => {
         return new Promise((resolve, reject) => {
@@ -126,6 +125,14 @@ export default function CreateListing() {
 
         })
     }
+
+//   removing image
+  const handleRemoveImage = (index) => {
+    setFormData({
+      ...formData,
+      imageUrls: formData.imageUrls.filter((_, i) => i !== index),
+    });
+  };
 
     const handleChange = (e) => {
 
@@ -209,7 +216,7 @@ export default function CreateListing() {
 
     return (
         <main className="p-3 max-w-4xl mx-auto">
-            <h1 className="text-3xl font-semibold text-center my-7">Update Listing</h1>
+            <h1 className="text-3xl font-semibold text-center my-7">Update Your Post</h1>
 
             <form className="flex flex-col sm:flex-col" onSubmit={handleSubmit}>
 
@@ -274,18 +281,14 @@ export default function CreateListing() {
 
                 <div className=" my-4">
                     <p className="font-semibold">Images:
-                        <span className=" font-normal text-gray-600 ml-2">Maximum 6 Images you can upload...</span>
+                        <span className=" font-normal text-gray-600 ml-2">First image is set as cover image..</span>
                     </p>
 
                     <div className="flex flex-row gap-2 h-24">
                         <input onChange={(e) => setFiles(e.target.files)} className=" p-3 border border-gray-300 rounded w-full" type="file" id="images" accept="image/*" multiple />
                         <button type="button" onClick={handleImageSubmit} className="p-3 my-4 bg-green-700 text-white border border-green-600 rounded uppercase hover:opacity-85 disabled:opacity-60">Upload</button>
 
-
                     </div>
-
-
-
 
                 </div>
 
@@ -294,7 +297,9 @@ export default function CreateListing() {
 
                         <div key={index} className="flex justify-between p-3 border items-center">
                             <img src={url} alt="Listing Images" className="w-30 h-20 object-cover rounded-lg" />
-                            {/* <button className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75">Delete</button> */}
+                            <button className="p-3 text-red-700 rounded-lg uppercase hover:opacity-75" onClick={() => handleRemoveImage(index)}>
+                                Delete
+                            </button>
 
                         </div>
                     ))
@@ -302,13 +307,11 @@ export default function CreateListing() {
 
 
 
-                <button className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-60">{loading ? 'Updating...' : 'Update Listing'}</button>
+                <button className="p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-60">{loading ? 'Editing...' : 'Edit Post'}</button>
 
 {
     error && <p className=" text-red-700 text-sm"> {error} </p>
 }
-
-
             </form>
         </main>
     )
