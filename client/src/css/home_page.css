@@ -1,53 +1,145 @@
-/* body {
-  
-  /* background-color: #2234ae;
-  background-image: linear-gradient(315deg, #2234ae 0%, #191714 74%);
- */
-/* 
-  background-color: #182b3a;
-background-image: linear-gradient(315deg, #182b3a 0%, #20a4f3 74%); */
+/* Color variables */
+:root {
+  --main-color: #333;
+  --accent-color: #555;
+}
 
-
-  /* color: wheat; */
-
-
+/* Container styles */
 .home-page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin-top: 75px;
 }
 
-.home-page-header {
+/* Content styles */
+.home-page-content p {
+  font-size: 35px;
+  font-weight: bold;
+  color: var(--main-color);
   text-align: center;
-  margin-bottom: 50px;
 }
 
+/* Featured properties styles */
+.home-page-featured-properties {
+  margin-top: 50px;
+  text-align: center;
+  align-items: center;
+}
+
+.home-page-featured-properties h2 {
+  font-size: 30px;
+  color: var(--main-color);
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.property {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.property img {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4%;
+}
+
+.property p {
+  font-size: 18px;
+  color: var(--main-color);
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* Image styles */
 .home-page-images {
   display: flex;
   justify-content: space-evenly;
-  margin-top: 100px;
-  height: 70vh;
+  margin-top: 80px;
+  height: 50vh;
   gap: 15px;
   width: 80%;
-  margin-bottom: 50px;
+  margin-bottom: 1px;
 }
 
 .home-page-images img {
-
   width: 400px;
   height: 300px;
   object-fit: cover;
   border-radius: 4%;
-  -webkit-border-radius: 4%;
-  -moz-border-radius: 4%;
-  -ms-border-radius: 4%;
-  -o-border-radius: 4%;
 }
 
+/* Quote styles */
 .home-page-quote {
   text-align: center;
   background-color: transparent;
   padding: 20px;
   border-radius: 5px;
+}
+
+.home-page-quote p {
+  font-style: italic;
+  font-size: 18px;
+  color: var(--accent-color);
+}
+
+/* Footer styles */
+.footer-home {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-home p {
+  margin: 0;
+}
+
+.footer-home .copyright-home {
+  font-size: 14px;
+  color: var(--main-color);
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .home-page-images {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .home-page-images img {
+    margin-bottom: 15px;
+  }
+}
+
+/* HR */
+.hr-home {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 1200px;
+}
+
+/* security */
+.home-content {
+  margin-top: 30px;
+  width: 80%;
+}
+.home-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+.home-description {
+  font-size: 1rem;
+  color: black;
+  margin-bottom: 20px;
+}
+.highlight {
+  color: rgb(255, 0, 0); /* Red color */
+  font-weight: bold; /* Make the text bold for emphasis */
 }
