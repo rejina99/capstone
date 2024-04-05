@@ -103,16 +103,15 @@ export default function Profile() {
       });
 
       const data = await res.json();
-
-      if (!data.success) {
-        throw new Error(data.message); // Throw an error if the request was not successful
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
       }
-
-      // Dispatch deleteUserSuccess or handle success case as needed
+      dispatch(deleteUserSuccess(data));
     } catch (error) {
-      dispatch(deleteUserFailure(error.message)); // Dispatch error in case of failure
+      dispatch(deleteUserFailure(error.message));
     }
-  }
+  };
 
 
   // sign out
