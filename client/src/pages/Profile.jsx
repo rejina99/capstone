@@ -67,6 +67,7 @@ export default function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      dispatch(updateUserStart());
       // request
       const res = await fetch(`/api/user/update/${currentUser._id}`, {
         method: 'POST',
@@ -242,7 +243,7 @@ export default function Profile() {
       </p> */}
 
 
-      <p className=' text-green-700'>{updateSuccess ? 'User is updated suceessfully... ' : ''}</p>
+      <p className=' text-green-700'>{updateSuccess ? 'User is updated successfully... ' : ''}</p>
 
       <div className='flex justify-center'>
 
